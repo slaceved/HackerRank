@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BankSafe
 {
@@ -10,28 +7,24 @@ namespace BankSafe
     {
         public static void Main(string[] args)
         {
-            Safe s = new BankSafe.Bank.Safe(2);
-
+            var s = new Safe(2);
             Console.WriteLine(s.ToString());
-
 
             s.AddItem("stuff");
             s.AddItem("more stuff");
             Console.WriteLine(s.ToString());
-            foreach (string i in s.Items)
+            foreach (var i in s.Items)
             {
-                Console.WriteLine(i.ToString());
+                Console.WriteLine(i);
             }
             Console.WriteLine(s.Capacity);
- 
-            Console.ReadKey();
+            Console.Read();
         }
-    
+    }
 
-
-    private class Safe
+    internal class Safe
     {
-        private readonly List<string> items = new List<string>();
+        private readonly List<string> _items = new List<string>();
         private readonly int _capacity;
 
         public Safe(int capacity)
@@ -39,32 +32,26 @@ namespace BankSafe
             _capacity = capacity;
         }
 
-        public int Capacity { get { return _capacity; } }
+        public int Capacity => _capacity;
 
-        public IEnumerable<string> Items {
-            get { return items; }
-        }
+        public IEnumerable<string> Items => _items;
 
         public void AddItem(string item)
         {
-            if (items.Count >= _capacity)
+            if (_items.Count >= _capacity)
                 throw new InvalidOperationException();
-            items.Add(item);
+            _items.Add(item);
         }
 
         public override string ToString()
         {
-            return String.Format("Safe: {0}/{1}", items.Count, _capacity);
+            return $"Safe: {_items.Count}/{_capacity}";
         }
 
         public bool Empty()
         {
-            items.Clear();
+            _items.Clear();
             return true;
         }
-
     }
-
-}
-
 }

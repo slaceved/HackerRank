@@ -1,31 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
 namespace PasswordValidation
 {
-    class Program
+    internal class Solution
     {
         public static bool StrongPassword(string password)
         {
             //12 characters, at least 1 Upper case leeter, at least 1 lower case letter, at least 1 number
-            Regex rgx = new Regex(@"(?=.{12,})(?=.*[A-Z])(?=.*\d)(?=.*[a-z])");
-            Match mat = rgx.Match(password);
+            var rgx = new Regex(@"(?=.{12,})(?=.*[A-Z])(?=.*\d)(?=.*[a-z])");
+            var mat = rgx.Match(password);
             if (!mat.Success) { return false; }
 
-
             //begins with uppercase and lower case letters, then a number, then more uppercase and lower case letters
-            Regex regx = new Regex(@"[A-Z, a-z]+[0-9]+[A-Z, a-z]+");
-            Match match = regx.Match(password);
-            if (!match.Success) { return false; }
-
-
-            return true;
+            var regx = new Regex(@"[A-Z, a-z]+[0-9]+[A-Z, a-z]+");
+            var match = regx.Match(password);
+            return match.Success;
         }
-            static void Main(string[] args)
+         public static void Main(string[] args)
         {
             Console.WriteLine(StrongPassword("Strong1Password"));
             Console.WriteLine(StrongPassword("strong1password"));

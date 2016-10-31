@@ -1,11 +1,10 @@
 ﻿using System;
 
-
 namespace SparseArray
 {
-    public static class Solution
+    internal static class Solution
     {
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
             var sa = new SparseArray();
 

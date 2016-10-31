@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BoxCount
 {
@@ -10,38 +6,26 @@ namespace BoxCount
     {
         public static int MinimalNumberOfBoxes(int products, int availableLargeBoxes, int availableSmallBoxes)
         {
-            int largeBoxHolds = 5;
-            int smallBoxHolds = 1;
-            int totNumOfLargeBoxesToUse = 0;
+            const int largeBoxHolds = 5;
+            const int smallBoxHolds = 1;
+            var largeBoxCapasityNeeded = products / largeBoxHolds;
 
-            int totNumOfBoxes = availableLargeBoxes + availableSmallBoxes;
+            var totNumOfLargeBoxesToUse = largeBoxCapasityNeeded <= availableLargeBoxes ? largeBoxCapasityNeeded : availableLargeBoxes;
 
-            int largeBoxCapasityNeeded = products / largeBoxHolds;
+            var remainingProducts = products - (totNumOfLargeBoxesToUse * largeBoxHolds);
 
-            if (largeBoxCapasityNeeded <= availableLargeBoxes)
-            {
-                totNumOfLargeBoxesToUse = largeBoxCapasityNeeded;
-            }
-            else { totNumOfLargeBoxesToUse = availableLargeBoxes; }
-
-
-            int remainingProducts = products - (totNumOfLargeBoxesToUse * largeBoxHolds);
-
-            int smallBoxCapasityNeeded = remainingProducts / smallBoxHolds;
+            var smallBoxCapasityNeeded = remainingProducts / smallBoxHolds;
 
             if (smallBoxCapasityNeeded <= availableSmallBoxes)
             {
                 return totNumOfLargeBoxesToUse + smallBoxCapasityNeeded;
             }
-            else
-            {
-                return -1; //not enough boxes 
-            }
+            return -1; //not enough boxes 
         }
 
         public static void Main(string[] args)
         {
-            Console.WriteLine(Boxes.MinimalNumberOfBoxes(20, 3, 3));
+            Console.WriteLine(MinimalNumberOfBoxes(20, 3, 3));
             Console.ReadKey();
         }
     }

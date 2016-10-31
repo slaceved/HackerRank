@@ -1,37 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ArrayDS
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    class Solution
+    internal class Solution
     {
-
-        static void Main(String[] args)
+        public static void Main(string[] args)
         {
-           int n = Convert.ToInt32(Console.ReadLine());
-            string[] arr_temp = Console.ReadLine().Split(' ');
-            int[] arr = Array.ConvertAll(arr_temp, Int32.Parse);
+            var input = Console.ReadLine();
+            if (input == null) return;
+            var n = int.Parse(input);
+            var arrTemp = Console.ReadLine()?.Split(' ');
+            if (arrTemp == null) return;
+            var arr = Array.ConvertAll(arrTemp, Int32.Parse);
             if( n != arr.Length)
             {
                 Console.WriteLine("Error: The number quoted and actual data input does not match.");
             }
 
-            StringBuilder retVal = new StringBuilder();
-
-            for (int i = (arr.Length -1); i >= 0; i--)
+            var retVal = new StringBuilder();
+            for (var i = (arr.Length -1); i >= 0; i--)
             {
                 retVal.AppendFormat("{0} ", arr[i]);
             }
 
             Console.WriteLine(retVal.ToString());
-            Console.ReadKey();
+            Console.Read();
         }
     }
 
