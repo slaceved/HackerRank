@@ -64,7 +64,7 @@ namespace InterestingFibonacciSum
                 FOfA = Fibonacci.GenerateNthFibonacci(sumA)%(Power(10, 9) + 7);
 
 
-
+                //G = 
                 Console.WriteLine(Fibonacci.GenerateNthFibonacci(sumA) % (Power(10,9) + 7));
 
             }
